@@ -6,6 +6,12 @@
 defmodule CiscoConfigCopy do
   @oid_ciscoConfigCopy "1.3.6.1.4.1.9.9.96"
 
+  defp get_key_by_value(dict, value) do
+    dict
+      |> Enum.find(fn {_k, v} -> v == value end)
+      |> (fn {k, _v} -> k end).()
+  end
+
   @type configCopyProtocol :: 1..5
   def typeConfigCopyProtocol do
     %{
@@ -20,7 +26,7 @@ defmodule CiscoConfigCopy do
     typeConfigCopyProtocol[value]
   end
   def typeConfigCopyProtocol(value) when is_integer(value) do
-    Util.get_key_by_value(typeConfigCopyProtocol, value)
+    get_key_by_value(typeConfigCopyProtocol, value)
   end
 
   @type configFileType :: 1..6
@@ -38,7 +44,7 @@ defmodule CiscoConfigCopy do
     typeConfigFileType[value]
   end
   def typeConfigFileType(value) when is_integer(value) do
-    Util.get_key_by_value(typeConfigFileType, value)
+    get_key_by_value(typeConfigFileType, value)
   end
 
   @type inetAddressType :: 0..4 | 16
@@ -56,7 +62,7 @@ defmodule CiscoConfigCopy do
     typeInetAddressType[value]
   end
   def typeInetAddressType(value) when is_integer(value) do
-    Util.get_key_by_value(typeInetAddressType, value)
+    get_key_by_value(typeInetAddressType, value)
   end
 
   @type configCopyState :: 1..4
@@ -72,7 +78,7 @@ defmodule CiscoConfigCopy do
     typeConfigCopyState[value]
   end
   def typeConfigCopyState(value) when is_integer(value) do
-    Util.get_key_by_value(typeConfigCopyState, value)
+    get_key_by_value(typeConfigCopyState, value)
   end
 
   @type configCopyFailCause :: 1..9
@@ -93,7 +99,7 @@ defmodule CiscoConfigCopy do
     typeConfigCopyFailCause[value]
   end
   def typeConfigCopyFailCause(value) when is_integer(value) do
-    Util.get_key_by_value(typeConfigCopyFailCause, value)
+    get_key_by_value(typeConfigCopyFailCause, value)
   end
 
   @type rowStatus :: 1..6
@@ -111,7 +117,7 @@ defmodule CiscoConfigCopy do
     typeRowStatus[value]
   end
   def typeRowStatus(value) when is_integer(value) do
-    Util.get_key_by_value(typeRowStatus, value)
+    get_key_by_value(typeRowStatus, value)
   end
 
   @type truthValue :: 1 | 2
@@ -125,7 +131,7 @@ defmodule CiscoConfigCopy do
     typeTruthValue[value]
   end
   def typeTruthValue(value) when is_integer(value) do
-    Util.get_key_by_value(typeTruthValue, value)
+    get_key_by_value(typeTruthValue, value)
   end
 
   defmodule CcCopyEntry do
