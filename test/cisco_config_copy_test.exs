@@ -1,4 +1,4 @@
-defmodule CiscoConfigCopyExTest do
+defmodule CiscoConfigCopyTest do
   use ExUnit.Case
 
   test "the truth" do

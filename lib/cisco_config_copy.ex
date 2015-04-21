@@ -234,7 +234,7 @@ defmodule CiscoConfigCopy do
     def ccCopyFileName(ccCopyEntry) do
       {oid, type} = @oid_ccCopyFileName
 
-      SNMPMIB.ccCopyFileName)
+      SNMPMIB.object(oid, type, ccCopyEntry.ccCopyFileName)
     end
     def ccCopyFileName(ccCopyEntry, value) when is_binary(value) do
       %CcCopyEntry{ccCopyEntry|ccCopyFileName: value}
