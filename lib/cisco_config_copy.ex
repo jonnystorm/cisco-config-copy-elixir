@@ -194,7 +194,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyProtocol)
     end
-    def ccCopyProtocol(ccCopyEntry, value) when value in 1..5 do
+    def ccCopyProtocol(ccCopyEntry, value) do
       CiscoConfigCopy.typeConfigCopyProtocol
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyProtocol: v} end).()
@@ -208,7 +208,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopySourceFileType)
     end
-    def ccCopySourceFileType(ccCopyEntry, value) when value in 1..6 do
+    def ccCopySourceFileType(ccCopyEntry, value) do
       CiscoConfigCopy.typeConfigFileType
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopySourceFileType: v} end).()
@@ -222,7 +222,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyDestFileType)
     end
-    def ccCopyDestFileType(ccCopyEntry, value) when value in 1..6 do
+    def ccCopyDestFileType(ccCopyEntry, value) do
       CiscoConfigCopy.typeConfigFileType
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyDestFileType: v} end).()
@@ -272,7 +272,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyNotificationOnCompletion)
     end
-    def ccCopyNotificationOnCompletion(ccCopyEntry, value) when value in 1..2 do
+    def ccCopyNotificationOnCompletion(ccCopyEntry, value) do
       CiscoConfigCopy.typeTruthValue
         |> Map.fetch!(value)
         |> (fn v ->
@@ -288,7 +288,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyState)
     end
-    def ccCopyState(ccCopyEntry, value) when value in 1..4 do
+    def ccCopyState(ccCopyEntry, value) do
       CiscoConfigCopy.typeConfigCopyState
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyState: v} end).()
@@ -326,7 +326,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyFailCause)
     end
-    def ccCopyFailCause(ccCopyEntry, value) when value in 1..9 do
+    def ccCopyFailCause(ccCopyEntry, value) do
       CiscoConfigCopy.typeConfigCopyFailCause
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyFailCause: v} end).()
@@ -340,7 +340,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyEntryRowStatus)
     end
-    def ccCopyEntryRowStatus(ccCopyEntry, value) when value in 1..6 do
+    def ccCopyEntryRowStatus(ccCopyEntry, value) do
       CiscoConfigCopy.typeRowStatus
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyEntryRowStatus: v} end).()
@@ -354,7 +354,7 @@ defmodule CiscoConfigCopy do
 
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyServerAddressType)
     end
-    def ccCopyServerAddressType(ccCopyEntry, value) when value in [0,1,2,3,4,16] do
+    def ccCopyServerAddressType(ccCopyEntry, value) do
       CiscoConfigCopy.typeInetAddressType
         |> Map.fetch!(value)
         |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyServerAddressType: v} end).()
