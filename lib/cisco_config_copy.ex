@@ -386,21 +386,7 @@ defmodule CiscoConfigCopy do
       |> CcCopyEntry.ccCopyFileName(filename)
       |> CcCopyEntry.ccCopyServerAddressType(server_address_type)
       |> CcCopyEntry.ccCopyServerAddressRev1(server_address)
-      |> CcCopyEntry.ccCopyEntryRowStatus(:create_and_go)
-  end
-  @spec cc_copy_entry(:running_config, :startup_config) :: CcCopyEntry.t
-  def cc_copy_entry(:running_config, :startup_config) do
-    %CcCopyEntry{}
-      |> CcCopyEntry.ccCopySourceFileType(:running_config)
-      |> CcCopyEntry.ccCopyDestFileType(:startup_config)
-      |> CcCopyEntry.ccCopyEntryRowStatus(:create_and_go)
-  end
-  @spec cc_copy_entry(:startup_config, :running_config) :: CcCopyEntry.t
-  def cc_copy_entry(:startup_config, :running_config) do
-    %CcCopyEntry{}
-      |> CcCopyEntry.ccCopySourceFileType(:startup_config)
-      |> CcCopyEntry.ccCopyDestFileType(:running_config)
-      |> CcCopyEntry.ccCopyEntryRowStatus(:create_and_go)
+      |> CcCopyEntry.ccCopyEntryRowStatus(:active)
   end
 end
 
