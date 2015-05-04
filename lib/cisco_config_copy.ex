@@ -391,8 +391,12 @@ defmodule CiscoConfigCopy do
   @spec cc_copy_entry(:running_config, :startup_config) :: CcCopyEntry.t
   def cc_copy_entry(:running_config, :startup_config) do
     %CcCopyEntry{}
+      |> CcCopyEntry.ccCopyProtocol(:tftp)
       |> CcCopyEntry.ccCopySourceFileType(:running_config)
       |> CcCopyEntry.ccCopyDestFileType(:startup_config)
+      |> CcCopyEntry.ccCopyFileName("")
+      |> CcCopyEntry.ccCopyServerAddressType(:ipv4)
+      |> CcCopyEntry.ccCopyServerAddressRev1("")
       |> CcCopyEntry.ccCopyEntryRowStatus(:active)
   end
   @spec cc_copy_entry(:startup_config, :running_config) :: CcCopyEntry.t
@@ -400,6 +404,9 @@ defmodule CiscoConfigCopy do
     %CcCopyEntry{}
       |> CcCopyEntry.ccCopySourceFileType(:startup_config)
       |> CcCopyEntry.ccCopyDestFileType(:running_config)
+      |> CcCopyEntry.ccCopyFileName("")
+      |> CcCopyEntry.ccCopyServerAddressType(:ipv4)
+      |> CcCopyEntry.ccCopyServerAddressRev1("")
       |> CcCopyEntry.ccCopyEntryRowStatus(:active)
   end
 end
