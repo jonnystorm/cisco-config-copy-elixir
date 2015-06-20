@@ -7,9 +7,9 @@ defmodule CiscoConfigCopy do
   @oid_ciscoConfigCopy "1.3.6.1.4.1.9.9.96"
 
   defp get_key_by_value(dict, value) do
-    dict
-      |> Enum.find(fn {_k, v} -> v == value end)
-      |> (fn {k, _v} -> k end).()
+    {k, _} = dict |> Enum.find(fn {_k, v} -> v == value end)
+
+    k
   end
 
   @type configCopyProtocol :: 1..5
@@ -195,9 +195,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyProtocol)
     end
     def ccCopyProtocol(ccCopyEntry, value) do
-      CiscoConfigCopy.typeConfigCopyProtocol
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyProtocol: v} end).()
+      value = CiscoConfigCopy.typeConfigCopyProtocol |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyProtocol: value}
     end
 
     def ccCopySourceFileType do
@@ -209,9 +209,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopySourceFileType)
     end
     def ccCopySourceFileType(ccCopyEntry, value) do
-      CiscoConfigCopy.typeConfigFileType
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopySourceFileType: v} end).()
+      value = CiscoConfigCopy.typeConfigFileType |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopySourceFileType: value}
     end
 
     def ccCopyDestFileType do
@@ -223,9 +223,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyDestFileType)
     end
     def ccCopyDestFileType(ccCopyEntry, value) do
-      CiscoConfigCopy.typeConfigFileType
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyDestFileType: v} end).()
+      value = CiscoConfigCopy.typeConfigFileType |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyDestFileType: value}
     end
 
     def ccCopyFileName do
@@ -273,11 +273,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyNotificationOnCompletion)
     end
     def ccCopyNotificationOnCompletion(ccCopyEntry, value) do
-      CiscoConfigCopy.typeTruthValue
-        |> Map.fetch!(value)
-        |> (fn v ->
-          %CcCopyEntry{ccCopyEntry|ccCopyNotificationOnCompletion: v}
-        end).()
+      value = CiscoConfigCopy.typeTruthValue |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyNotificationOnCompletion: value}
     end
 
     def ccCopyState do
@@ -289,9 +287,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyState)
     end
     def ccCopyState(ccCopyEntry, value) do
-      CiscoConfigCopy.typeConfigCopyState
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyState: v} end).()
+      value = CiscoConfigCopy.typeConfigCopyState |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyState: value}
     end
 
     def ccCopyTimeStarted do
@@ -327,9 +325,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyFailCause)
     end
     def ccCopyFailCause(ccCopyEntry, value) do
-      CiscoConfigCopy.typeConfigCopyFailCause
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyFailCause: v} end).()
+      value = CiscoConfigCopy.typeConfigCopyFailCause |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyFailCause: value}
     end
 
     def ccCopyEntryRowStatus do
@@ -341,9 +339,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyEntryRowStatus)
     end
     def ccCopyEntryRowStatus(ccCopyEntry, value) do
-      CiscoConfigCopy.typeRowStatus
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyEntryRowStatus: v} end).()
+      value = CiscoConfigCopy.typeRowStatus |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyEntryRowStatus: value}
     end
 
     def ccCopyServerAddressType do
@@ -355,9 +353,9 @@ defmodule CiscoConfigCopy do
       SNMPMIB.object(oid, type, ccCopyEntry.ccCopyServerAddressType)
     end
     def ccCopyServerAddressType(ccCopyEntry, value) do
-      CiscoConfigCopy.typeInetAddressType
-        |> Map.fetch!(value)
-        |> (fn v -> %CcCopyEntry{ccCopyEntry|ccCopyServerAddressType: v} end).()
+      value = CiscoConfigCopy.typeInetAddressType |> Map.fetch!(value)
+
+      %CcCopyEntry{ccCopyEntry|ccCopyServerAddressType: value}
     end
 
     def ccCopyServerAddressRev1 do
@@ -380,34 +378,34 @@ defmodule CiscoConfigCopy do
       source_file_type, destination_file_type, filename,
       server_address_type, server_address) do
     %CcCopyEntry{}
-      |> CcCopyEntry.ccCopyProtocol(protocol)
-      |> CcCopyEntry.ccCopySourceFileType(source_file_type)
-      |> CcCopyEntry.ccCopyDestFileType(destination_file_type)
-      |> CcCopyEntry.ccCopyFileName(filename)
-      |> CcCopyEntry.ccCopyServerAddressType(server_address_type)
-      |> CcCopyEntry.ccCopyServerAddressRev1(server_address)
-      |> CcCopyEntry.ccCopyEntryRowStatus(:active)
+    |> CcCopyEntry.ccCopyProtocol(protocol)
+    |> CcCopyEntry.ccCopySourceFileType(source_file_type)
+    |> CcCopyEntry.ccCopyDestFileType(destination_file_type)
+    |> CcCopyEntry.ccCopyFileName(filename)
+    |> CcCopyEntry.ccCopyServerAddressType(server_address_type)
+    |> CcCopyEntry.ccCopyServerAddressRev1(server_address)
+    |> CcCopyEntry.ccCopyEntryRowStatus(:active)
   end
   @spec cc_copy_entry(:running_config, :startup_config) :: CcCopyEntry.t
   def cc_copy_entry(:running_config, :startup_config) do
     %CcCopyEntry{}
-      |> CcCopyEntry.ccCopyProtocol(:tftp)
-      |> CcCopyEntry.ccCopySourceFileType(:running_config)
-      |> CcCopyEntry.ccCopyDestFileType(:startup_config)
-      |> CcCopyEntry.ccCopyFileName("")
-      |> CcCopyEntry.ccCopyServerAddressType(:ipv4)
-      |> CcCopyEntry.ccCopyServerAddressRev1("")
-      |> CcCopyEntry.ccCopyEntryRowStatus(:active)
+    |> CcCopyEntry.ccCopyProtocol(:tftp)
+    |> CcCopyEntry.ccCopySourceFileType(:running_config)
+    |> CcCopyEntry.ccCopyDestFileType(:startup_config)
+    |> CcCopyEntry.ccCopyFileName("")
+    |> CcCopyEntry.ccCopyServerAddressType(:ipv4)
+    |> CcCopyEntry.ccCopyServerAddressRev1("")
+    |> CcCopyEntry.ccCopyEntryRowStatus(:active)
   end
   @spec cc_copy_entry(:startup_config, :running_config) :: CcCopyEntry.t
   def cc_copy_entry(:startup_config, :running_config) do
     %CcCopyEntry{}
-      |> CcCopyEntry.ccCopySourceFileType(:startup_config)
-      |> CcCopyEntry.ccCopyDestFileType(:running_config)
-      |> CcCopyEntry.ccCopyFileName("")
-      |> CcCopyEntry.ccCopyServerAddressType(:ipv4)
-      |> CcCopyEntry.ccCopyServerAddressRev1("")
-      |> CcCopyEntry.ccCopyEntryRowStatus(:active)
+    |> CcCopyEntry.ccCopySourceFileType(:startup_config)
+    |> CcCopyEntry.ccCopyDestFileType(:running_config)
+    |> CcCopyEntry.ccCopyFileName("")
+    |> CcCopyEntry.ccCopyServerAddressType(:ipv4)
+    |> CcCopyEntry.ccCopyServerAddressRev1("")
+    |> CcCopyEntry.ccCopyEntryRowStatus(:active)
   end
 end
 
