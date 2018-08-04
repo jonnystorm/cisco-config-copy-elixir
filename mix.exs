@@ -7,7 +7,7 @@ defmodule CiscoConfigCopy.Mixfile do
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
@@ -15,6 +15,6 @@ defmodule CiscoConfigCopy.Mixfile do
   end
 
   defp deps do
-    [{:snmp_mib_ex, git: "https://github.com/jonnystorm/snmp-mib-elixir"}]
+    [{:snmp_mib_ex, git: "https://gitlab.com/jonnystorm/snmp-mib-elixir"}]
   end
 end
